@@ -1,0 +1,42 @@
+.\" $Id$
+.Dd 
+.Dt
+.Os
+.Sh NAME
+.Nm chkcmp
+.Nd manage database of utility checksums for auditing
+.Sh SYNOPSIS
+.Nm chkcmp
+.Op Fl ghl
+.Op Fl t Ar type
+.Op Fl d Ar base
+.Sh DESCRIPTION
+The
+.Nm
+utility supports the following options:
+.Bl -tag -width indent
+.It Fl g
+Generate/update the checksum suite database for the given machine.
+The operating system platform and version will be queried and recorded
+in
+.Pa /var/chkcmp .
+The standard list of utility paths available from
+.Pa
+will be consulted when computing checksums.
+.It Fl h
+Display utility usage information.
+.It Fl l
+List available checksum types.
+.It Fl d Ar base
+Specify an alternative database root when comparing checksums.
+The default is
+.Pa /usr/local/share/chkcmp .
+.It Fl t Ar type
+Perform operations only for the given algorithm type, instead of all
+available algorithms.
+.El
+.Sh EXAMPLES
+.Sh SEE ALSO
+.Xr md5 1 ,
+.Xr rmd160 1 ,
+.Xr sha1 1
