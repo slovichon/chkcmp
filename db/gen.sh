@@ -1,20 +1,12 @@
 #!/bin/sh
 
-if [ $# -lt 2 ]; then
-	echo "usage: $0 target chksum1 [chksum2 [... [chksumN]]]"
-	exit 1
-fi
+# XXX: sha2
+chksums="md5 sha1 rmd160"
+file=$(uname -srm | tr ' ' '-')
 
-target=$1
-shift
-
-output=$(echo $target | sed 's!/!_!g')
-
-chksums=$*
-
-for i in $target/*; do
-	for chksum in $chksums; do
-		$chksum $i >> $output.$chksum
+for i in /bin/* /usr/bin/* /usr/libexec/* /sbin/* /usr/sbin/*; do
+	for chksum in md5 sha1 rmd160; do
+		$chksum $i >> $file
 	done
 done
 
